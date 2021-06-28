@@ -7,7 +7,7 @@ import http from "http";
 const app = express();
 const httpServer = http.createServer(app);
 
-httpServer.listen(80);
+httpServer.listen(process.env.PORT);
 
 const io = new Server(httpServer, {
   serveClient: false,
