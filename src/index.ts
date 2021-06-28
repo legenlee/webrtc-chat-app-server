@@ -4,7 +4,7 @@ import { Message } from "./types";
 const io = new Server({
   serveClient: false,
   cors: {
-    origin: ["http://localhost:8080", "http://192.168.1.3:8080"],
+    origin: ["https://webrtc-chat-app-client.herokuapp.com"],
   },
 });
 
@@ -51,7 +51,7 @@ io.on("connection", (socket) => {
   });
 });
 
-io.attach(3000, {
+io.attach(80, {
   pingInterval: 10000,
   pingTimeout: 5000,
 });
