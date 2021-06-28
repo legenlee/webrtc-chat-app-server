@@ -7,6 +7,8 @@ import http from "http";
 const app = express();
 const httpServer = http.createServer(app);
 
+httpServer.listen(80);
+
 const io = new Server(httpServer, {
   serveClient: false,
   cors: {
@@ -55,9 +57,4 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`${socket.id} disappeared out of the void.`);
   });
-});
-
-io.attach(80, {
-  pingInterval: 10000,
-  pingTimeout: 5000,
 });
