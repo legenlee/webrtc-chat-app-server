@@ -1,7 +1,13 @@
 import { Server } from "socket.io";
 import { Message } from "./types";
 
-const io = new Server({
+import express from "express";
+import http from "http";
+
+const app = express();
+const httpServer = http.createServer(app);
+
+const io = new Server(httpServer, {
   serveClient: false,
   cors: {
     origin: ["https://webrtc-chat-app-client.herokuapp.com"],
