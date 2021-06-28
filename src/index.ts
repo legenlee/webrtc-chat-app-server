@@ -1,7 +1,13 @@
 import { Server } from "socket.io";
 import { Message } from "./types";
 
-const io = new Server({
+import express from "express";
+import http from "http";
+
+const app = express();
+const httpServer = http.createServer(app);
+
+const io = new Server(httpServer, {
   serveClient: false,
   cors: {
     origin: ["http://localhost:8080", "http://192.168.1.3:8080"],
@@ -51,7 +57,7 @@ io.on("connection", (socket) => {
   });
 });
 
-io.attach(3000, {
+io.attach(80, {
   pingInterval: 10000,
   pingTimeout: 5000,
 });
